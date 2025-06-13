@@ -151,7 +151,22 @@ public class VideoTienda
     	return null;
     }
 
-
+    /**
+     * Busca una película por su título.
+     * @param titulo Título de la película. titulo != null.
+     * @return La película con el título dado o null si no existe.
+     */
+    public Pelicula buscarPelicula(String titulo)
+    {
+        for(Pelicula pelicula : catalogo)
+        {
+            if(pelicula.darTitulo().equals(titulo))
+            {
+                return pelicula;
+            }
+        }
+        return null;
+    }
 
     /**
      * Adiciona el monto dado al saldo disponible del cliente. <br>
@@ -239,19 +254,34 @@ public class VideoTienda
     		throw new Exception("El cliente no tiene alquilada la copia " + numeroCopia + " de la pelicula " + titulo);
     	}
     	
+    	Pelicula pelicula = buscarPelicula(titulo);
+    	if (pelicula == null) 
+    	{
+    	   throw new Exception("No existe una película con el título " + titulo);
+    	}
+    	   
     	cliente.devolverCopia(titulo, numeroCopia);
     	pelicula.devolverCopia(numeroCopia);
     }
 
-
-
-
+    /**
+     * Agrega una copia a una película del catálogo.
+     * @param titulo Título de la película. titulo != null.
+     * @throws Exception Si no existe una película con ese título.
+     */
+    public void agregarCopiaPelicula(String titulo) throws Exception {
+        Pelicula pelicula = buscarPelicula(titulo);
+        if (pelicula == null) {
+            throw new Exception("No existe una película con el título: " + titulo);
+        }
+        pelicula.agregarCopia();
+    }
 
     /**
      * Retorna la lista de clientes de la videotienda
      * @return ArrayList la lista de clientes
      */
-    public ArrayList<Cliente> darListaCliente()
+    public ArrayList<Cliente> darListaClientes()
     {
     	return clientes;
     }

@@ -33,12 +33,12 @@ public class Pelicula
     /**
      * Lista de copias disponibles
      */
-    private ArrayList disponibles;
+    private ArrayList<Copia> disponibles;
 
     /**
      * Lista de copias prestadas
      */
-    private ArrayList prestadas;
+    private ArrayList<Copia> prestadas;
 
     /**
      * Numero de la siguiente copia a adicionar
@@ -136,7 +136,7 @@ public class Pelicula
      * Retorna la cantidad total de copias que existen de la pelicula en la videotienda
      * @return entero con la cantidad de copias que existen en la tienda
      */
-   public int darTotalcopias()
+   public int darTotalCopias()
    {
 	   return disponibles.size() + prestadas.size();
    }
