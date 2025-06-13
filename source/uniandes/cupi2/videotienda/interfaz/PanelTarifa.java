@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
  * $Id: PanelTarifa.java,v 1.1 2005/12/16 15:13:33 k-marcos Exp $ 
- * Universidad de los Andes (Bogotá - Colombia)
- * Departamento de Ingeniería de Sistemas y Computación 
+ * Universidad de los Andes (BogotÃ¡ - Colombia)
+ * Departamento de IngenierÃ­a de Sistemas y ComputaciÃ³n 
  * Licenciado bajo el esquema Academic Free License version 2.1 
  *
  * Proyecto Cupi2 (http://cupi2.uniandes.edu.co)
@@ -13,10 +13,10 @@
 
 package uniandes.cupi2.videotienda.interfaz;
 
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,7 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- * Panel para el manejo de la tarifa de la videotienda
+ * Panel para el manejo de la tarifa
  */
 public class PanelTarifa extends JPanel implements ActionListener
 {
@@ -33,16 +33,16 @@ public class PanelTarifa extends JPanel implements ActionListener
     //-----------------------------------------------------------------
 
     /**
-     * Comando de cambiar Tarifa
+     * Comando para cambiar la tarifa
      */
-    public final static String CAMBIAR = "CAMBIAR";
+    private static final String CAMBIAR = "cambiar";
 
     //-----------------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------------
 
     /**
-     * Ventana principal de la aplicación
+     * Ventana principal de la aplicaciÃ³n
      */
     private InterfazVideotienda ventanaPrincipal;
 
@@ -51,75 +51,82 @@ public class PanelTarifa extends JPanel implements ActionListener
     //-----------------------------------------------------------------
 
     /**
-     * Etiqueta tarifa
+     * Etiqueta valor de la tarifa
      */
     private JLabel etiquetaTarifa;
 
     /**
-     * Campo para la tarifa
+     * Campo para el valor de la tarifa
      */
     private JTextField campoTarifa;
 
     /**
-     * Botón para cambiar la tarifa
+     * BotÃ³n para cambiar la tarifa
      */
-    private JButton botonTarifa;
+    private JButton botonCambiar;
 
     //-----------------------------------------------------------------
-    // Constructor
+    // Constructores
     //-----------------------------------------------------------------
 
     /**
      * Crea el panel para el manejo de la tarifa
-     * @param interfaz Ventana principal de la aplicación. interfaz != null.
+     * @param ventana Ventana principal de la aplicaciÃ³n. ventana != null.
      */
-    public PanelTarifa( InterfazVideotienda interfaz )
+    public PanelTarifa(InterfazVideotienda ventana)
     {
-        ventanaPrincipal = interfaz;
+        ventanaPrincipal = ventana;
 
-        setBorder( BorderFactory.createTitledBorder( "Tarifa de Alquiler" ) );
+        setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        etiquetaTarifa = new JLabel( "Valor de tarifa" );
-        add( etiquetaTarifa );
+        etiquetaTarifa = new JLabel("Valor de tarifa");
+        add(etiquetaTarifa);
 
-        campoTarifa = new JTextField( 10 );
-        add( campoTarifa );
+        campoTarifa = new JTextField(10);
+        add(campoTarifa);
 
-        botonTarifa = new JButton( );
-        botonTarifa.setText( "Cambiar" );
-        botonTarifa.setActionCommand( CAMBIAR );
-        botonTarifa.addActionListener( this );
-        add( botonTarifa );
+        botonCambiar = new JButton("Cambiar");
+        botonCambiar.setActionCommand(CAMBIAR);
+        botonCambiar.addActionListener(this);
+        add(botonCambiar);
     }
-    
+
+    //-----------------------------------------------------------------
+    // MÃ©todos
+    //-----------------------------------------------------------------
+
     /**
-     * Asigna el valor de la tarifa
-     * @param tarifa Valor de tarifa.
+     * Asigna el valor de la tarifa en el campo
+     * @param tarifa Valor de la tarifa. tarifa > 0.
      */
     public void asignarTarifa(int tarifa)
     {
-        campoTarifa.setText(""+tarifa);
+        campoTarifa.setText(Integer.toString(tarifa));
     }
-    
+
     /**
      * Responde a los eventos de los botones del panel
-     * @param evento Evento generado por un botón. evento != null.
+     * @param evento Evento generado por un botÃ³n. evento != null.
      */
-    public void actionPerformed( ActionEvent evento )
+    public void actionPerformed(ActionEvent evento)
     {
-        String comando = evento.getActionCommand( );
+        String comando = evento.getActionCommand();
 
-        if( comando.equals( CAMBIAR ) )
+        if(comando.equals(CAMBIAR))
         {
             try
             {
-                int tarifa = Integer.parseInt( campoTarifa.getText( ) );
-                ventanaPrincipal.cambiarTarifa( tarifa );
+                int tarifa = Integer.parseInt(campoTarifa.getText());
+                if(tarifa <= 0)
+                {
+                    JOptionPane.showMessageDialog(this, "La tarifa debe ser mayor que cero", "Cambio de Tarifa", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                ventanaPrincipal.cambiarTarifa(tarifa);
             }
-            catch( NumberFormatException e )
+            catch(NumberFormatException nfe)
             {
-                JOptionPane.showMessageDialog( this, "La tarifa debe ser un valor entero", "Cambio de Tarifa", JOptionPane.ERROR_MESSAGE );
-                return;
+                JOptionPane.showMessageDialog(this, "La tarifa debe ser un valor entero", "Cambio de Tarifa", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
