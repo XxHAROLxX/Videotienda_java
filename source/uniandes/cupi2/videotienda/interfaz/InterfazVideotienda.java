@@ -137,8 +137,8 @@ public class InterfazVideotienda extends JFrame
     }
 
     /**
-     * Retorna el cat�logo de pel�culas
-     * @return cat�logo de pel�culas de la videotienda
+     * Retorna el catalogo de pel�culas
+     * @return catalogo de pel�culas de la videotienda
      */
     public ArrayList<Pelicula> darCatalogo( )
     {
@@ -146,8 +146,8 @@ public class InterfazVideotienda extends JFrame
     }
 
     /**
-     * Busca y muestra la informaci�n de la pel�cula.
-     * @param titulo T�tulo de la pel�cula. titulo != null.
+     * Busca y muestra la informaci�n de la pelicula.
+     * @param titulo Titulo de la pel�cula. titulo != null.
      */
     public void mostrarPelicula( String titulo )
     {
@@ -160,8 +160,8 @@ public class InterfazVideotienda extends JFrame
     }
 
     /**
-     * Agrega una copia a la pel�cula del t�tulo dado
-     * @param titulo T�tulo de la pel�cula. titulo != null.
+     * Agrega una copia a la pel�cula del titulo dado
+     * @param titulo T�tulo de la pelicula. titulo != null.
      */
     public void agregarCopia( String titulo )
     {
@@ -180,7 +180,7 @@ public class InterfazVideotienda extends JFrame
 
     /**
      * Busca y muestra la informaci�n de un cliente.
-     * @param cedula C�dula del cliente a mostrar. cedula != null.
+     * @param cedula Cedula del cliente a mostrar. cedula != null.
      */
     public void mostrarCliente( String cedula )
     {
@@ -208,7 +208,7 @@ public class InterfazVideotienda extends JFrame
     /**
      * Afilia un nuevo cliente a la videotienda.
      * @param nombre Nombre del cliente. nombre != null.
-     * @param cedula C�dula del cliente. cedula != null.
+     * @param cedula Cedula del cliente. cedula != null.
      * @param direccion Direcci�n del cliente. direccion != null.
      * @param saldo Saldo inicial del cliente. saldo >0.
      */
@@ -239,7 +239,7 @@ public class InterfazVideotienda extends JFrame
 
     /**
      * Recarga el saldo del cliente con la cantidad dada
-     * @param cedula C�dula del cliente. cedula != null.
+     * @param cedula Cedula del cliente. cedula != null.
      * @param recarga Monto de la recarga.
      */
     public void cargarSaldo( String cedula, int recarga )
@@ -285,8 +285,8 @@ public class InterfazVideotienda extends JFrame
 
     /**
      * Devuelve la copia alquilada por un cliente
-     * @param cedula C�dula del cliente. cliente != null.
-     * @param pelicula T�tulo de la pel�cula a devolver. pelicula != null.
+     * @param cedula Cedula del cliente. cliente != null.
+     * @param pelicula T�tulo de la pelicula a devolver. pelicula != null.
      * @param copia N�mero de la copia a devolver.
      */
     public void devolverCopia( String cedula, String pelicula, int copia )
@@ -342,7 +342,7 @@ public class InterfazVideotienda extends JFrame
     // Ejecución
     //-----------------------------------------------------------------
     /**
-     * M�todo para la ejecuci�n del programa
+     * Metodo para la ejecuci�n del programa
      * @param args Argumentos para la ejecuci�n. No se requiere ninguno.
      */
     public static void main( String[] args )
