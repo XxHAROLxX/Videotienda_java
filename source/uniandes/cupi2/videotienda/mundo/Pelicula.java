@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
  * $Id: Pelicula.java,v 1.1 2005/12/16 15:13:33 k-marcos Exp $
- * Universidad de los Andes (Bogotá - Colombia)
- * Departamento de Ingeniería de Sistemas y Computación 
+ * Universidad de los Andes (Bogotï¿½ - Colombia)
+ * Departamento de Ingenierï¿½a de Sistemas y Computaciï¿½n 
  * Licenciado bajo el esquema Academic Free License version 2.1 
  *
  * Proyecto Cupi2 (http://cupi2.uniandes.edu.co)
@@ -15,7 +15,7 @@ package uniandes.cupi2.videotienda.mundo;
 import java.util.ArrayList;
 
 /**
- * Esta clase representa una película que se encuentra en la videotienda y
+ * Esta clase representa una pelicula que se encuentra en la videotienda y
  * de la cual puede haber copias disponibles o prestadas.
  */ 
 public class Pelicula
@@ -26,7 +26,7 @@ public class Pelicula
     //-----------------------------------------------------------------
 
     /**
-     * Título de la película
+     * Titulo de la pelicula
      */
     private String titulo;
 
@@ -41,7 +41,7 @@ public class Pelicula
     private ArrayList prestadas;
 
     /**
-     * Número de la siguiente copia a adicionar
+     * Numero de la siguiente copia a adicionar
      */
     private int codigoSiguienteCopia;
 
@@ -50,51 +50,82 @@ public class Pelicula
     //-----------------------------------------------------------------
 
     /**
-     * Crea una película de la videotienda con el título dado. <br>
-     * <b>post: </b> La película se crea sin copias disponibles ni prestadas.
-     * @param unTitulo Título de la película. unTitulo != null.
+     * Crea una pelicula de la videotienda con el titulo dado. <br>
+     * <b>post: </b> La pelicula se crea sin copias disponibles ni prestadas.
+     * @param unTitulo Titulo de la pelicula. unTitulo != null.
      */
     public Pelicula( String unTitulo )
     {
-    	//TODO implementar inicializando los atributos
+    	titulo  = unTitulo;
+    	disponibles = new ArrayList<Copia>();
+    	prestadas  = new ArrayList<Copia>();
+    	codigoSiguienteCopia = 1;	  
     }
 
     //-----------------------------------------------------------------
-    // Métodos
+    // Metodos
     //-----------------------------------------------------------------
 
     /**
-     * Adiciona una nueva copia de la película. <br>
-     * <b>post: </b>La lista de películas disponibles tiene una nueva copia.
-     * @return código de la copia creada. código >= 1;
+     * Adiciona una nueva copia de la pelicula. <br>
+     * <b>post: </b>La lista de peliculas disponibles tiene una nueva copia.
+     * @return codigo de la copia creada. cï¿½digo >= 1;
      */
     public int agregarCopia( )
     {
-    	//TODO implementar. Recuerde retornar lo indicado en la documentación. 
+        Copia nuevaCopia = new Copia(titulo, codigoSiguienteCopia);
+        disponibles.add(nuevaCopia);
+        codigoSiguienteCopia++;
+        return nuevaCopia.darCodigo();
     }
-
     /**
-     * Retorna una copia de película para alquilar si hay disponibles. <br>
+     * Retorna una copia de pelicula para alquilar si hay disponibles. <br>
      * <b>post: </b> la copia queda en la lista de prestadas.
      * @return Copia que ha sido alquilada o null si no hay disponibles.
      */
     public Copia alquilarCopia( )
     {
-    	//TODO implementar. Recuerde retornar lo indicado en la documentación.
+        if(disponibles.isEmpty())
+        {
+            return null;
+        }
+        
+        Copia copia = disponibles.get(0);
+        disponibles.remove(0);
+        prestadas.add(copia);
+        return copia;
     }
 
     /**
-     * Devuelve una copia de la película y la coloca como disponible. <br>
-     * <b>post: </b> regresa la copia a la lista de disponibles, sólo si está prestada.
-     * @param codigoCopia Código de la copia que se quiere devolver.
-     * @throws Exception Si la copia a devolver no está prestada.
+     * Devuelve una copia de la pelï¿½cula y la coloca como disponible. <br>
+     * <b>post: </b> regresa la copia a la lista de disponibles, solo si esta prestada.
+     * @param codigoCopia Codigo de la copia que se quiere devolver.
+     * @throws Exception Si la copia a devolver no esta prestada.
      */
-
-     //TODO Definir la signatura del método de acuerdo a la documentación e implementarlo.
-
+    public void devolverCopia(int codigoCopia) throws Exception
+    {
+    	Copia copiaADevolver = null;
+    	
+    	for(Copia copia : prestadas)
+    	{
+    		if(copia.darCodigo() == codigoCopia)
+    		{
+    			copiaADevolver = copia;
+    			break;
+    		}
+    	}
+    	
+    	if(copiaADevolver == null)
+    	{
+    		throw new Exception("la copia" + codigoCopia + "No estÃ¡ prestada");
+    	}
+    	
+    	prestadas.remove(copiaADevolver);
+    	disponibles.add(copiaADevolver);
+    }
     /**
-     * Retorna el título de la película.
-     * @return título de la película.
+     * Retorna el tï¿½tulo de la pelicula.
+     * @return tï¿½tulo de la pelï¿½cula.
      */
     public String darTitulo( )
     {
@@ -102,14 +133,20 @@ public class Pelicula
     }
 
     /**
-     * Retorna la cantidad total de copias que existen de la película en la videotienda
+     * Retorna la cantidad total de copias que existen de la pelicula en la videotienda
      * @return entero con la cantidad de copias que existen en la tienda
      */
-    //TODO Definir la signatura del método de acuerdo a la documentación e implementarlo.
-
+   public int darTotalcopias()
+   {
+	   return disponibles.size() + prestadas.size();
+   }
+   
     /**
-     * Retorna el número de copias disponibles
-     * @return número de copias disponibles
+     * Retorna el numero de copias disponibles
+     * @return numero de copias disponibles
      */
-    //TODO Definir la signatura del método de acuerdo a la documentación e implementarlo.
+   public int darNumeroDisponibles()
+   {
+	   return disponibles.size();
+   }
 }
