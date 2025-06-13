@@ -5,6 +5,8 @@
  */
 package uniandes.cupi2.videotienda.mundo;
 
+import javax.swing.JOptionPane;
+
 /**
  * Esta clase representa una copia de una pelicula que se encuentra en la videotienda 
  */ 
@@ -49,7 +51,20 @@ public class Copia
 	}
 	
 	/** Retorna el titulo de la película
-	 * @return titulo de la pelicula 
+	 * @return titulo de la pelicula public void agregarCopia( String titulo )
+    {
+        try
+        {
+            videotienda.agregarCopiaPelicula( titulo );
+            Pelicula p = videotienda.buscarPelicula( titulo );
+            JOptionPane.showMessageDialog( this, "La pelicula \"" + titulo + "\" tiene " + p.darTotalCopias( ) + " copias", "Agregar Copia", JOptionPane.INFORMATION_MESSAGE );
+        }
+        catch( Exception e )
+        {
+            JOptionPane.showMessageDialog( this, e.getMessage( ), "Agregar Copia", JOptionPane.ERROR_MESSAGE );
+        }
+
+    }
 	 */
 	public String darTituloPelicula()
 	{

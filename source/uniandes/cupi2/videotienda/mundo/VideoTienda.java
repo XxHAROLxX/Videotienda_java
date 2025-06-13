@@ -299,9 +299,14 @@ public class VideoTienda
      * Modifica la tarifa diaria de alquiler
      * @param nuevaTarifa Nueva tarifa diaria. nuevaTarifa > 0.
      */
-    public void modificarTarifa(int nuevaTarifa)
+    public void modificarTarifa(int nuevaTarifa)throws Exception
     {
-    	tarifaDiaria = nuevaTarifa;
+    	if (nuevaTarifa <= 0) 
+    	{
+    	  throw new Exception("La tarifa debe ser mayor que 0");
+    	}
+    	    tarifaDiaria = nuevaTarifa;
+    	
     }
     
     /**
