@@ -76,8 +76,19 @@ public class Copia
 	 * @param otra Otra copia. otra != null.
 	 * @return true si son iguales, false en caso contrario
 	 */
-	public boolean esIgualIA(Copia otra)
-	{
-		return tituloPelicula.equals(otra.tituloPelicula) && codigo == otra .codigo;
-	}
+	public boolean esIgualA(Copia otra)
+    {
+        return tituloPelicula.equals(otra.tituloPelicula) && codigo == otra.codigo;
+    }
+    
+    /**
+     * Alias para el método esIgualA para mantener compatibilidad con las pruebas
+     * <b>pre: </b> otra != null.
+     * @param otra Otra copia. otra != null.
+     * @return true si son iguales, false en caso contrario
+     */
+    public boolean esIgual(Copia otra)
+    {
+        return esIgualA(otra);
+    }
 }
