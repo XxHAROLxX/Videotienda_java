@@ -51,7 +51,7 @@ public class DialogoRegistroCliente extends JDialog
         setLayout( new BorderLayout( ) );
         add( panelRegistro, BorderLayout.CENTER );
         pack( );
-        setTitle( "Afiliaci�n de Cliente" );
+        setTitle( "Afiliación de Cliente" );
     }
 
     //-----------------------------------------------------------------
@@ -69,7 +69,7 @@ public class DialogoRegistroCliente extends JDialog
         String sSaldo = panelRegistro.darSaldo( );
         if( nombre.equals( "" ) || cedula.equals( "" ) || direccion.equals( "" ) || sSaldo.equals( "" ) )
         {
-            JOptionPane.showMessageDialog( this, "Debe completar todos los datos", "Afiliaci�n de Cliente", JOptionPane.ERROR_MESSAGE );
+            JOptionPane.showMessageDialog( this, "Debe completar todos los datos", "Afiliación de Cliente", JOptionPane.ERROR_MESSAGE );
             return;
         }
         
@@ -91,13 +91,13 @@ public class DialogoRegistroCliente extends JDialog
             saldo = Integer.parseInt( sSaldo );
             if( saldo < 0 )
             {
-                JOptionPane.showMessageDialog( this, "El saldo inicial debe ser mayor a cero", "Afiliaci�n de Cliente", JOptionPane.ERROR_MESSAGE );
+                JOptionPane.showMessageDialog( this, "El saldo inicial debe ser mayor a cero", "Afiliación de Cliente", JOptionPane.ERROR_MESSAGE );
                 return;
             }
         }
         catch( NumberFormatException nfe )
         {
-            JOptionPane.showMessageDialog( this, "El saldo debe ser un valor entero", "Afiliaci�n de Cliente", JOptionPane.ERROR_MESSAGE );
+            JOptionPane.showMessageDialog( this, "El saldo debe ser un valor entero", "Afiliación de Cliente", JOptionPane.ERROR_MESSAGE );
             return;
         }
 
